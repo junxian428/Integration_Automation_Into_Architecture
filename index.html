@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset=UTF-8 />
+    <link rel="stylesheet" type="text/css" href="styles.css" />
+  </head>
+  <body>
+    <h1 style="display:inline;">Integrate Automation Into Architecture, Final Year Project Online Exhibition</h1>
+    <a href="https://www.youtube.com/@wengyin3365/videos" style="display:inline;"> YouTube Channel Demo</a>
+    <a href="https://github.com/junxian428" style="display:inline;"> GitHub</a>
+    <br>
+    <img src="https://avatars.githubusercontent.com/u/58724748?v=4" width="100px" height="100px">
+
+    <script type="module">
+      import {
+        Camera,
+        DirectionalLight,
+        Color,
+        Material,
+        PointLight,
+        WebGLRenderer,
+        Scene,
+        PerspectiveCamera,
+        Texture,
+        AmbientLight,
+      } from 'https://unpkg.com/three@0.120.1/build/three.module.js'
+      import { OrbitControls } from 'https://unpkg.com/three@0.120.1/examples/jsm/controls/OrbitControls.js'
+      import { GLTFLoader } from 'https://unpkg.com/three@0.120.1/examples/jsm/loaders/GLTFLoader.js'
+
+      let scene, camera, renderer;
+
+      function init() {
+
+        scene = new Scene();
+        scene.background = new Color(0xdddddd);
+
+        camera = new PerspectiveCamera(40,window.innerWidth/window.innerHeight,1,5000);
+        camera.rotation.y = 45/180*Math.PI;
+        camera.position.x = 155;
+        camera.position.y = 70;
+        camera.position.z = 250;
+
+        const hlight = new AmbientLight (0x404040,1);
+        scene.add(hlight);
+
+        const directionalLight = new DirectionalLight(0xffffff,1);
+        directionalLight.position.set(0,1,0);
+        directionalLight.castShadow = true;
+        scene.add(directionalLight);
+        const light = new PointLight(0xc4c4c4,1);
+        light.position.set(0,300,500);
+        scene.add(light);
+        const light2 = new PointLight(0xc4c4c4,1);
+        light2.position.set(500,100,0);
+        scene.add(light2);
+        const light3 = new PointLight(0xc4c4c4,1);
+        light3.position.set(0,100,-500);
+        scene.add(light3);
+        const light4 = new PointLight(0xc4c4c4,1);
+        light4.position.set(-500,300,500);
+        scene.add(light4);
+
+        renderer = new WebGLRenderer({antialias:true});
+        renderer.setSize(window.innerWidth,window.innerHeight);
+        document.body.appendChild(renderer.domElement);
+
+        const controls = new OrbitControls(camera, renderer.domElement);
+        // controls.addEventListener('change', renderer);
+
+        let loader = new GLTFLoader();
+        loader.load('FYP.gltf', function(gltf){
+          const car = gltf.scene.children[0];
+          const car_1 = gltf.scene.children[1];
+          const car_2 = gltf.scene.children[2];
+          const car_3 = gltf.scene.children[3];
+          const car_4 = gltf.scene.children[4];
+          const car_5 = gltf.scene.children[5];
+          const car_6 = gltf.scene.children[6];
+          const car_7 = gltf.scene.children[7];
+          const car_8 = gltf.scene.children[8];
+          const car_9 = gltf.scene.children[9];
+
+
+          console.log('car: ', car);
+          car.scale.set(1,1,1);
+          scene.add(car);
+          animate();
+
+          console.log('car: ', car_1);
+          car.scale.set(1,1,1);
+          scene.add(car_1);
+          animate();
+
+          console.log('car: ', car_2);
+          car.scale.set(1,1,1);
+          scene.add(car_2);
+          animate();
+
+          console.log('car: ', car_3);
+          car.scale.set(1,1,1);
+          scene.add(car_3);
+          animate();
+
+
+          console.log('car: ', car_4);
+          car.scale.set(1,1,1);
+          scene.add(car_4);
+          animate();
+
+          
+          console.log('car: ', car_5);
+          car.scale.set(1,1,1);
+          scene.add(car_5);
+          animate();
+          console.log('car: ', car_6);
+          car.scale.set(1,1,1);
+          scene.add(car_6);
+          animate();
+
+          console.log('car: ', car_7);
+          car.scale.set(1,1,1);
+          scene.add(car_7);
+          animate();
+
+          console.log('car: ', car_8);
+          car.scale.set(1,1,1);
+          scene.add(car_8);
+          animate();
+
+          
+          console.log('car: ', car_9);
+          car.scale.set(1,1,1);
+          scene.add(car_9);
+          animate();
+        });
+      }
+      function animate() {
+        renderer.render(scene,camera);
+        requestAnimationFrame(animate);
+      }
+      init();
+    </script>
+  </body>
+</html>  
+
